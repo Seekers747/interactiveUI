@@ -25,9 +25,7 @@ function App() {
         colorPalette?: string
         variant?: 'solid' | 'outline' | 'ghost' | 'link' | 'unstyled'
         size?: 'sm' | 'md' | 'lg'
-        isLoading?: boolean
-        isDisabled?: boolean
-        borderRadius?: string | number
+        disabled?: boolean
         label?: string
     }
 
@@ -35,14 +33,12 @@ function App() {
         colorPalette: 'teal',
         variant: 'solid',
         size: 'md',
-        isLoading: false,
-        isDisabled: false,
-        borderRadius: 'md',
+        disabled: false,
         label: 'Click me',
     })
 
     const { label, ...buttonProps } = button
-    const buttonCodeString = `<Button colorPalette=${button.colorPalette} variant=${button.variant} size=${button.size}>${label}</Button>`
+    const buttonCodeString = `<Button colorPalette='${button.colorPalette}' variant='${button.variant}' size='${button.size}' disabled={${button.disabled}}>${label}</Button>`
       
 
     const showToast = (toastMessage: string) => {
@@ -200,9 +196,23 @@ function App() {
                             </Menu.Positioner>
                         </Portal>
                     </Menu.Root>
+
+                    <Menu.Root>
+                        <Menu.Trigger asChild>
+                            <Button variant="outline">Toggle Disabled</Button>
+                        </Menu.Trigger>
+                        <Portal>
+                            <Menu.Positioner>
+                                <Menu.Content>
+                                    <Menu.Item value="enable" onSelect={() => setButton(prev => ({ ...prev, disabled: false }))}>Enable</Menu.Item>
+                                    <Menu.Item value="disable" onSelect={() => setButton(prev => ({ ...prev, disabled: true }))}>Disable</Menu.Item>
+                                </Menu.Content>
+                            </Menu.Positioner>
+                        </Portal>
+                    </Menu.Root>
                 </Box>
 
-                <Box mt={2} mb={6} display="flex" justifyContent="flex-start" border="solid 1px" borderColor="gray.800" p={4} borderRadius="md" w="635px">
+                <Box mt={2} mb={6} display="flex" justifyContent="flex-start" border="solid 1px" borderColor="gray.800" p={4} borderRadius="md" w="785px">
                     { isViewScreen && <Button {...(buttonProps as any)}>{label}</Button> }
                     { !isViewScreen && <><Code>{buttonCodeString}</Code><Button onClick={() => navigator.clipboard.writeText(buttonCodeString)} ml={4}>Copy Code</Button></> }
                 </Box>
