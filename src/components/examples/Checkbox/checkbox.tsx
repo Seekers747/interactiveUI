@@ -125,17 +125,24 @@ export function CheckboxExample() {
             </Box>
             <Box mt={2} mb={6} display="flex" justifyContent="flex-start" border="solid 1px" borderColor="gray.800" p={4} borderRadius="md" w="645px">
                 { isViewScreen ? (
-                    <Checkbox.Root 
-                        {...(checkboxProps as any)} 
-                        checked={checkbox.checked}
-                        onCheckedChange={(details) => setCheckbox(prev => ({ ...prev, checked: details.checked }))}
-                    >
-                        <Checkbox.HiddenInput />
-                        <Checkbox.Control />
-                        <Checkbox.Label>{label}</Checkbox.Label>
-                    </Checkbox.Root>
+                    <>
+                        <Checkbox.Root 
+                            {...(checkboxProps as any)} 
+                            checked={checkbox.checked}
+                            onCheckedChange={(details) => setCheckbox(prev => ({ ...prev, checked: details.checked }))}
+                        >
+                            <Checkbox.HiddenInput />
+                            <Checkbox.Control />
+                            <Checkbox.Label>{label}</Checkbox.Label>
+                        </Checkbox.Root>
+                        <Button asChild position="absolute" right="8px" bottom="30px" variant="ghost" colorPalette="blue" >
+                            <a href="https://chakra-ui.com/docs/components/checkbox" target="_blank" rel="noopener noreferrer">
+                                Documentation
+                            </a>
+                        </Button>
+                    </>
                 ) : (
-                    <><Code>{checkboxCodeString}</Code><Button onClick={() => copyCode(checkboxCodeString)} ml={4}><FontAwesomeIcon icon={faCopy} /></Button></>
+                    <><Code colorPalette="blue">{checkboxCodeString}</Code><Button onClick={() => copyCode(checkboxCodeString)} ml={4}><FontAwesomeIcon icon={faCopy} /></Button></>
                 )}
             </Box>
         </Box>

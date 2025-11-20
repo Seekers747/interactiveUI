@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import { ButtonExample } from './components/examples/button/button.tsx'
 import { CheckboxExample } from './components/examples/Checkbox/checkbox.tsx'
+import { SliderExample } from './components/examples/slider/slider.tsx'
 import { useToggles } from './components/hooks/toggles.ts'
 import { useVariables } from './components/hooks/variables.ts'
 import { useToastActions } from './components/hooks/toast.ts'
@@ -19,6 +20,7 @@ export {
     faCopy,
     ButtonExample,
     CheckboxExample,
+    SliderExample,
     useToggles,
     useVariables,
     useToastActions

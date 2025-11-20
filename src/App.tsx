@@ -7,6 +7,7 @@ const {
     useState,
     ButtonExample,
     CheckboxExample,
+    SliderExample,
     useToggles,
     useVariables,
     useToastActions
@@ -70,6 +71,7 @@ function App() {
 
             <ButtonExample />
             <CheckboxExample />
+            <SliderExample />
         </>
     )
 }

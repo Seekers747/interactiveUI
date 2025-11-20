@@ -139,8 +139,13 @@ export function ButtonExample() {
             </Box>
 
             <Box mt={2} mb={6} display="flex" justifyContent="flex-start" border="solid 1px" borderColor="gray.800" p={4} borderRadius="md" w="645px">
-                { isViewScreen && <Button {...(buttonProps as any)}>{label}</Button> }
-                { !isViewScreen && <><Code>{buttonCodeString}</Code><Button onClick={() => copyCode(buttonCodeString)} ml={4}><FontAwesomeIcon icon={faCopy} /></Button></> }
+                { isViewScreen && <><Button {...(buttonProps as any)}>{label}</Button><Button asChild position="absolute" right="8px" bottom="30px" variant="ghost" colorPalette="blue" >
+                    <a href="https://chakra-ui.com/docs/components/button" target="_blank" rel="noopener noreferrer">
+                        Documentation
+                    </a>
+                </Button>
+                </> }
+                { !isViewScreen && <><Code colorPalette="blue">{buttonCodeString}</Code><Button onClick={() => copyCode(buttonCodeString)} ml={4}><FontAwesomeIcon icon={faCopy} /></Button></> }
             </Box>
         </Box>
     )
