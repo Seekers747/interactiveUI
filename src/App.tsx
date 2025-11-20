@@ -1,3 +1,4 @@
+import { Portal } from '@chakra-ui/react'
 import './App.css'
 import * as imports from './imports.tsx'
 
@@ -123,7 +124,7 @@ function App() {
 
             <Box mt={4} textAlign="center">
                 <Heading as="h1" size="xl" mb={4}>
-                    Welcome to the Interactive UI App
+                    Better ChakraUI documentation
                 </Heading>
                 <Button
                     colorPalette="green"
@@ -153,41 +154,51 @@ function App() {
                     </Button>
 
                     <Menu.Root>
-                        <Menu.Trigger as={Box}>
+                        <Menu.Trigger asChild>
                             <Button variant="outline">Change color</Button>
                         </Menu.Trigger>
-
-                        <Menu.Content>
-                            <Menu.Item value="teal" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'teal' }))}>Teal</Menu.Item>
-                            <Menu.Item value="red" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'red' }))}>Red</Menu.Item>
-                            <Menu.Item value="blue" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'blue' }))}>Blue</Menu.Item>
-                            <Menu.Item value="green" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'green' }))}>Green</Menu.Item>
-                        </Menu.Content>
+                        <Portal>
+                            <Menu.Positioner>
+                                <Menu.Content>
+                                    <Menu.Item value="teal" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'teal' }))}>Teal</Menu.Item>
+                                    <Menu.Item value="red" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'red' }))}>Red</Menu.Item>
+                                    <Menu.Item value="blue" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'blue' }))}>Blue</Menu.Item>
+                                    <Menu.Item value="green" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'green' }))}>Green</Menu.Item>
+                                </Menu.Content>
+                            </Menu.Positioner>
+                        </Portal>
                     </Menu.Root>
 
                     <Menu.Root>
-                        <Menu.Trigger as={Box}>
+                        <Menu.Trigger asChild>
                             <Button variant="outline">Change variant</Button>
                         </Menu.Trigger>
                         
-                        <Menu.Content>
-                            <Menu.Item value="solid" onSelect={() => setButton(prev => ({ ...prev, variant: 'solid' }))}>Solid</Menu.Item>
-                            <Menu.Item value="outline" onSelect={() => setButton(prev => ({ ...prev, variant: 'outline' }))}>Outline</Menu.Item>
-                            <Menu.Item value="ghost" onSelect={() => setButton(prev => ({ ...prev, variant: 'ghost' }))}>Ghost</Menu.Item>
-                            <Menu.Item value="link" onSelect={() => setButton(prev => ({ ...prev, variant: 'link' }))}>Link</Menu.Item>
-                        </Menu.Content>
+                        <Portal>
+                            <Menu.Positioner>
+                                <Menu.Content>
+                                    <Menu.Item value="solid" onSelect={() => setButton(prev => ({ ...prev, variant: 'solid' }))}>Solid</Menu.Item>
+                                    <Menu.Item value="outline" onSelect={() => setButton(prev => ({ ...prev, variant: 'outline' }))}>Outline</Menu.Item>
+                                    <Menu.Item value="ghost" onSelect={() => setButton(prev => ({ ...prev, variant: 'ghost' }))}>Ghost</Menu.Item>
+                                    <Menu.Item value="link" onSelect={() => setButton(prev => ({ ...prev, variant: 'link' }))}>Link</Menu.Item>
+                                </Menu.Content>
+                            </Menu.Positioner>
+                        </Portal>
                     </Menu.Root>
 
                     <Menu.Root>
-                        <Menu.Trigger as={Box}>
+                        <Menu.Trigger asChild>
                             <Button variant="outline">Change size</Button>
                         </Menu.Trigger>
-
-                        <Menu.Content>
-                            <Menu.Item value="sm" onSelect={() => setButton(prev => ({ ...prev, size: 'sm' }))}>Small</Menu.Item>
-                            <Menu.Item value="md" onSelect={() => setButton(prev => ({ ...prev, size: 'md' }))}>Medium</Menu.Item>
-                            <Menu.Item value="lg" onSelect={() => setButton(prev => ({ ...prev, size: 'lg' }))}>Large</Menu.Item>
-                        </Menu.Content>
+                        <Portal>
+                            <Menu.Positioner>
+                                <Menu.Content>
+                                    <Menu.Item value="sm" onSelect={() => setButton(prev => ({ ...prev, size: 'sm' }))}>Small</Menu.Item>
+                                    <Menu.Item value="md" onSelect={() => setButton(prev => ({ ...prev, size: 'md' }))}>Medium</Menu.Item>
+                                    <Menu.Item value="lg" onSelect={() => setButton(prev => ({ ...prev, size: 'lg' }))}>Large</Menu.Item>
+                                </Menu.Content>
+                            </Menu.Positioner>
+                        </Portal>
                     </Menu.Root>
                 </Box>
 
