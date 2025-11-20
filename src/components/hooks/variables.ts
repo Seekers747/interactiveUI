@@ -1,6 +1,5 @@
 import { useColorMode } from "../ui/color-mode.tsx"
 import { useState } from 'react'
-import { useButtonState } from '../examples/button/useButtonState.ts'
 
 export function useVariables() {
     const { toggleColorMode } = useColorMode()
@@ -8,8 +7,6 @@ export function useVariables() {
     const [enableToaster, setEnableToaster] = useState(true)
     const [toastMessage, setToastMessage] = useState('')
     const [isViewScreen, setIsViewScreen] = useState(true)
-
-    const { button, setButton, label, buttonProps, buttonCodeString } = useButtonState()
 
     return {
         toggleColorMode,
@@ -20,11 +17,6 @@ export function useVariables() {
         toastMessage,
         setToastMessage,
         isViewScreen,
-        setIsViewScreen,
-        button,
-        setButton,
-        label,
-        buttonProps,
-        buttonCodeString
+        setIsViewScreen
     }
 }

@@ -3,9 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import { useVariables } from "../../hooks/variables"
 import { useCopyCode } from "../../hooks/extras"
+import { useButtonState } from "./useButtonState"
 
 export function ButtonExample() {
-    const { isViewScreen, setIsViewScreen, setButton, buttonProps, label, buttonCodeString } = useVariables()
+    const { isViewScreen, setIsViewScreen } = useVariables()
+    const { setButton, label, buttonProps, buttonCodeString } = useButtonState()
     const { copyCode } = useCopyCode()
 
 

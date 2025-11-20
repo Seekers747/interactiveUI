@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { toaster } from "./components/ui/toaster.tsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
-import { useButtonState } from './components/examples/button/useButtonState.ts'
 import { ButtonExample } from './components/examples/button/button.tsx'
 import { CheckboxExample } from './components/examples/Checkbox/checkbox.tsx'
 import { useToggles } from './components/hooks/toggles.ts'
@@ -18,7 +17,6 @@ export {
     toaster,
     FontAwesomeIcon,
     faCopy,
-    useButtonState,
     ButtonExample,
     CheckboxExample,
     useToggles,

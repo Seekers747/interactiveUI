@@ -16,4 +16,4 @@ export function useButtonState() {
     const buttonCodeString = `<Button colorPalette='${button.colorPalette}' variant='${button.variant}' size='${button.size}' disabled={${button.disabled}} loading={${button.loading}} loadingText='${button.loadingText}'>${label}</Button>`
   
     return { button, setButton, label, buttonProps, buttonCodeString }
-  }
+}
