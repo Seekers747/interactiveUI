@@ -1,5 +1,3 @@
-import { Portal } from '@chakra-ui/react'
-import './App.css'
 import * as imports from './imports.tsx'
 
 const {
@@ -11,7 +9,10 @@ const {
     useState,
     toaster,
     Menu,
-    Code
+    Code,
+    Portal,
+    FontAwesomeIcon,
+    faCopy,
   } = imports
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
         variant?: 'solid' | 'outline' | 'ghost' | 'link' | 'unstyled'
         size?: 'sm' | 'md' | 'lg'
         disabled?: boolean
+        loading?: boolean
+        loadingText?: string
         label?: string
     }
 
@@ -34,11 +37,13 @@ function App() {
         variant: 'solid',
         size: 'md',
         disabled: false,
+        loading: false,
+        loadingText: 'Loading...',
         label: 'Click me',
     })
 
     const { label, ...buttonProps } = button
-    const buttonCodeString = `<Button colorPalette='${button.colorPalette}' variant='${button.variant}' size='${button.size}' disabled={${button.disabled}}>${label}</Button>`
+    const buttonCodeString = `<Button colorPalette='${button.colorPalette}' variant='${button.variant}' size='${button.size}' disabled={${button.disabled}} loading={${button.loading}} loadingText='${button.loadingText}'>${label}</Button>`
       
 
     const showToast = (toastMessage: string) => {
@@ -79,6 +84,13 @@ function App() {
                 showToast(msg)
             }, index * 3000)
         })
+    }
+
+    function copyCode(text: string) {
+        const message = 'Code copied to clipboard'
+        setToastMessage(message)
+        showToast(message)
+        navigator.clipboard.writeText(text)
     }
 
     return (
@@ -184,37 +196,82 @@ function App() {
 
                     <Menu.Root>
                         <Menu.Trigger asChild>
-                            <Button variant="outline">Change size</Button>
+                            <Button variant="outline">More options</Button>
                         </Menu.Trigger>
                         <Portal>
                             <Menu.Positioner>
                                 <Menu.Content>
-                                    <Menu.Item value="sm" onSelect={() => setButton(prev => ({ ...prev, size: 'sm' }))}>Small</Menu.Item>
-                                    <Menu.Item value="md" onSelect={() => setButton(prev => ({ ...prev, size: 'md' }))}>Medium</Menu.Item>
-                                    <Menu.Item value="lg" onSelect={() => setButton(prev => ({ ...prev, size: 'lg' }))}>Large</Menu.Item>
-                                </Menu.Content>
-                            </Menu.Positioner>
-                        </Portal>
-                    </Menu.Root>
-
-                    <Menu.Root>
-                        <Menu.Trigger asChild>
-                            <Button variant="outline">Toggle Disabled</Button>
-                        </Menu.Trigger>
-                        <Portal>
-                            <Menu.Positioner>
-                                <Menu.Content>
-                                    <Menu.Item value="enable" onSelect={() => setButton(prev => ({ ...prev, disabled: false }))}>Enable</Menu.Item>
-                                    <Menu.Item value="disable" onSelect={() => setButton(prev => ({ ...prev, disabled: true }))}>Disable</Menu.Item>
+                                    <Menu.Item value="size">
+                                        <Menu.Root>
+                                            <Menu.Trigger asChild>
+                                                <Text>Change size</Text>
+                                            </Menu.Trigger>
+                                            <Portal>
+                                                <Menu.Positioner>
+                                                    <Menu.Content>
+                                                        <Menu.Item value="sm" onSelect={() => setButton(prev => ({ ...prev, size: 'sm' }))}>Small</Menu.Item>
+                                                        <Menu.Item value="md" onSelect={() => setButton(prev => ({ ...prev, size: 'md' }))}>Medium</Menu.Item>
+                                                        <Menu.Item value="lg" onSelect={() => setButton(prev => ({ ...prev, size: 'lg' }))}>Large</Menu.Item>
+                                                    </Menu.Content>
+                                                </Menu.Positioner>
+                                            </Portal>
+                                        </Menu.Root>
+                                    </Menu.Item>
+                                    <Menu.Item value="disabled">
+                                        <Menu.Root>
+                                            <Menu.Trigger asChild>
+                                                <Text>Toggle Disabled</Text>
+                                            </Menu.Trigger>
+                                            <Portal>
+                                                <Menu.Positioner>
+                                                    <Menu.Content>
+                                                        <Menu.Item value="enable" onSelect={() => setButton(prev => ({ ...prev, disabled: false }))}>Enable</Menu.Item>
+                                                        <Menu.Item value="disable" onSelect={() => setButton(prev => ({ ...prev, disabled: true }))}>Disable</Menu.Item>
+                                                    </Menu.Content>
+                                                </Menu.Positioner>
+                                            </Portal>
+                                        </Menu.Root>
+                                    </Menu.Item>
+                                    <Menu.Item value="loading">
+                                        <Menu.Root>
+                                            <Menu.Trigger asChild>
+                                                <Text>Toggle Loading</Text>
+                                            </Menu.Trigger>
+                                            <Portal>
+                                                <Menu.Positioner>
+                                                    <Menu.Content>
+                                                        <Menu.Item value="enable" onSelect={() => setButton(prev => ({ ...prev, loading: true }))}>Enable</Menu.Item>
+                                                        <Menu.Item value="disable" onSelect={() => setButton(prev => ({ ...prev, loading: false }))}>Disable</Menu.Item>
+                                                    </Menu.Content>
+                                                </Menu.Positioner>
+                                            </Portal>
+                                        </Menu.Root>
+                                    </Menu.Item>
+                                    <Menu.Item value="loadingText">
+                                        <Menu.Root>
+                                            <Menu.Trigger asChild>
+                                                <Text>Change Loading Text</Text>
+                                            </Menu.Trigger>
+                                            <Portal>
+                                                <Menu.Positioner>
+                                                    <Menu.Content>
+                                                        <Menu.Item value="Loading..." onSelect={() => setButton(prev => ({ ...prev, loadingText: 'Loading...' }))}>Loading...</Menu.Item>
+                                                        <Menu.Item value="Please wait" onSelect={() => setButton(prev => ({ ...prev, loadingText: 'Please wait' }))}>Please wait</Menu.Item>
+                                                        <Menu.Item value="Processing" onSelect={() => setButton(prev => ({ ...prev, loadingText: 'Processing' }))}>Processing</Menu.Item>
+                                                    </Menu.Content>
+                                                </Menu.Positioner>
+                                            </Portal>
+                                        </Menu.Root>
+                                    </Menu.Item>
                                 </Menu.Content>
                             </Menu.Positioner>
                         </Portal>
                     </Menu.Root>
                 </Box>
 
-                <Box mt={2} mb={6} display="flex" justifyContent="flex-start" border="solid 1px" borderColor="gray.800" p={4} borderRadius="md" w="785px">
+                <Box mt={2} mb={6} display="flex" justifyContent="flex-start" border="solid 1px" borderColor="gray.800" p={4} borderRadius="md" w="645px">
                     { isViewScreen && <Button {...(buttonProps as any)}>{label}</Button> }
-                    { !isViewScreen && <><Code>{buttonCodeString}</Code><Button onClick={() => navigator.clipboard.writeText(buttonCodeString)} ml={4}>Copy Code</Button></> }
+                    { !isViewScreen && <><Code>{buttonCodeString}</Code><Button onClick={() => copyCode(buttonCodeString)} ml={4}><FontAwesomeIcon icon={faCopy} /></Button></> }
                 </Box>
             </Box>
 
