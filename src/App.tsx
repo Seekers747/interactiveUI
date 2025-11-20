@@ -13,6 +13,7 @@ const {
     Portal,
     FontAwesomeIcon,
     faCopy,
+    useButtonState
   } = imports
 
 function App() {
@@ -21,30 +22,7 @@ function App() {
     const [enableToaster, setEnableToaster] = useState<boolean>(true)
     const [_toastMessage, setToastMessage] = useState<string>('')
     const [isViewScreen, setIsViewScreen] = useState<boolean>(true)
-
-    interface ButtonState {
-        colorPalette?: string
-        variant?: 'solid' | 'outline' | 'ghost' | 'link' | 'unstyled'
-        size?: 'sm' | 'md' | 'lg'
-        disabled?: boolean
-        loading?: boolean
-        loadingText?: string
-        label?: string
-    }
-
-    const [button, setButton] = useState<ButtonState>({
-        colorPalette: 'teal',
-        variant: 'solid',
-        size: 'md',
-        disabled: false,
-        loading: false,
-        loadingText: 'Loading...',
-        label: 'Click me',
-    })
-
-    const { label, ...buttonProps } = button
-    const buttonCodeString = `<Button colorPalette='${button.colorPalette}' variant='${button.variant}' size='${button.size}' disabled={${button.disabled}} loading={${button.loading}} loadingText='${button.loadingText}'>${label}</Button>`
-      
+    const { setButton, label, buttonProps, buttonCodeString } = useButtonState()
 
     const showToast = (toastMessage: string) => {
         if (!enableToaster && toastMessage !== 'Popup enabled') return
