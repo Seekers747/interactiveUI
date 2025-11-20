@@ -11,16 +11,10 @@ import { useVariables } from './components/utils/variables.ts'
 import { useToastActions } from './components/hooks/toast.ts'
 
 export {
-    Box,
-    Button,
-    Heading,
-    Text,
+    Box, Button, Heading, Text, Menu, Code, Portal,
     useColorMode,
     useState,
     toaster,
-    Menu,
-    Code,
-    Portal,
     FontAwesomeIcon,
     faCopy,
     useButtonState,
