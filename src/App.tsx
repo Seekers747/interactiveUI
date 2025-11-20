@@ -6,6 +6,7 @@ const {
     Heading,
     useState,
     ButtonExample,
+    CheckboxExample,
     useToggles,
     useVariables,
     useToastActions
@@ -68,6 +69,7 @@ function App() {
             </Box>
 
             <ButtonExample />
+            <CheckboxExample />
         </>
     )
 }
