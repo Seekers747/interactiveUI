@@ -1,4 +1,4 @@
-import * as imports from './imports.tsx'
+import * as imports from './imports.ts'
 
 const {
     Box,

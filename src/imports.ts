@@ -7,7 +7,7 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import { useButtonState } from './components/examples/button/useButtonState.ts'
 import { ButtonExample } from './components/examples/button/button.tsx'
 import { useToggles } from './components/hooks/toggles.ts'
-import { useVariables } from './components/utils/variables.ts'
+import { useVariables } from './components/hooks/variables.ts'
 import { useToastActions } from './components/hooks/toast.ts'
 
 export {
