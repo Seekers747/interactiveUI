@@ -10,6 +10,7 @@ const {
     useState,
     toaster,
     Menu,
+    Code
   } = imports
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     const [sidebar, setSidebar] = useState<boolean>(false)
     const [enableToaster, setEnableToaster] = useState<boolean>(true)
     const [_toastMessage, setToastMessage] = useState<string>('')
+    const [isViewScreen, setIsViewScreen] = useState<boolean>(true)
 
     interface ButtonState {
         colorPalette?: string
@@ -39,6 +41,7 @@ function App() {
     })
 
     const { label, ...buttonProps } = button
+    const buttonCodeString = `<Button colorPalette=${button.colorPalette} variant=${button.variant} size=${button.size}>${label}</Button>`
       
 
     const showToast = (toastMessage: string) => {
@@ -133,9 +136,21 @@ function App() {
 
             <Box position="absolute" left="270px" top="170px">
                 <Box mb={2} display="flex" flexDirection="row" alignItems="center" gap={4}>
-                    <Text textStyle="lg" fontWeight="bold">
-                        Buttons
-                    </Text>
+                    <Text textStyle="lg" fontWeight="bold">Buttons</Text>
+                    <Button 
+                    colorPalette={isViewScreen ? 'gray' : 'none'}
+                    variant={isViewScreen ? 'solid' : 'ghost'}
+                    bg={isViewScreen ? "gray.600" : "transparent"}
+                    onClick={() => setIsViewScreen(true)}>
+                        View
+                    </Button>
+                    <Button 
+                    colorPalette={!isViewScreen ? 'gray' : 'none'}
+                    variant={!isViewScreen ? 'solid' : 'ghost'}
+                    bg={!isViewScreen ? "gray.600" : "transparent"}
+                    onClick={() => setIsViewScreen(false)}>
+                        Code
+                    </Button>
 
                     <Menu.Root>
                         <Menu.Trigger as={Box}>
@@ -176,8 +191,9 @@ function App() {
                     </Menu.Root>
                 </Box>
 
-                <Box mt={2} mb={6} display="flex" justifyContent="flex-start" border="solid 1px" borderColor="gray.300" p={4} borderRadius="md" w="500px">
-                    <Button {...(buttonProps as any)}>{label}</Button>
+                <Box mt={2} mb={6} display="flex" justifyContent="flex-start" border="solid 1px" borderColor="gray.800" p={4} borderRadius="md" w="635px">
+                    { isViewScreen && <Button {...(buttonProps as any)}>{label}</Button> }
+                    { !isViewScreen && <><Code>{buttonCodeString}</Code><Button onClick={() => navigator.clipboard.writeText(buttonCodeString)} ml={4}>Copy Code</Button></> }
                 </Box>
             </Box>
 

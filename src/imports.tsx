@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Text, Menu } from '@chakra-ui/react'
+import { Box, Button, Heading, Text, Menu, Code } from '@chakra-ui/react'
 import { useColorMode } from "./components/ui/color-mode.tsx"
 import { useState } from 'react'
 import { toaster } from "./components/ui/toaster.tsx"
@@ -11,5 +11,6 @@ export {
     useColorMode,
     useState,
     toaster,
-    Menu
+    Menu,
+    Code
 }
