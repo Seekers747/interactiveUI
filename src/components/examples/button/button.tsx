@@ -1,9 +1,11 @@
-import { Box, Button, Text, Menu, Code, Portal } from "@chakra-ui/react"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy } from '@fortawesome/free-solid-svg-icons'
-import { useVariables } from "../../hooks/variables"
-import { useCopyCode } from "../../hooks/extras"
-import { useButtonState } from "./useButtonState"
+import * as imports from './buttonImports.ts'
+
+const {
+    Box, Button, Text, Menu, Code, Portal,
+    useVariables, useCopyCode, useButtonState,
+    FontAwesomeIcon, faCopy,
+    colorOptions, variantOptions, sizeOptions, toggleButtonOptions, toggleLoadingButtonOptions, loadingButtonOptions
+} = imports
 
 export function ButtonExample() {
     const { isViewScreen, setIsViewScreen } = useVariables()
@@ -37,10 +39,11 @@ export function ButtonExample() {
                     <Portal>
                         <Menu.Positioner>
                             <Menu.Content>
-                                <Menu.Item value="teal" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'teal' }))}>Teal</Menu.Item>
-                                <Menu.Item value="red" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'red' }))}>Red</Menu.Item>
-                                <Menu.Item value="blue" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'blue' }))}>Blue</Menu.Item>
-                                <Menu.Item value="green" onSelect={() => setButton(prev => ({ ...prev, colorPalette: 'green' }))}>Green</Menu.Item>
+                                {colorOptions.map(option => (
+                                    <Menu.Item key={option.value} value={option.value} onSelect={() => setButton(prev => ({ ...prev, colorPalette: option.value }))}>
+                                        {option.label}
+                                    </Menu.Item>
+                                ))}
                             </Menu.Content>
                         </Menu.Positioner>
                     </Portal>
@@ -54,10 +57,11 @@ export function ButtonExample() {
                     <Portal>
                         <Menu.Positioner>
                             <Menu.Content>
-                                <Menu.Item value="solid" onSelect={() => setButton(prev => ({ ...prev, variant: 'solid' }))}>Solid</Menu.Item>
-                                <Menu.Item value="outline" onSelect={() => setButton(prev => ({ ...prev, variant: 'outline' }))}>Outline</Menu.Item>
-                                <Menu.Item value="ghost" onSelect={() => setButton(prev => ({ ...prev, variant: 'ghost' }))}>Ghost</Menu.Item>
-                                <Menu.Item value="link" onSelect={() => setButton(prev => ({ ...prev, variant: 'link' }))}>Link</Menu.Item>
+                                {variantOptions.map(option => (
+                                    <Menu.Item key={option.value} value={option.value} onSelect={() => setButton(prev => ({ ...prev, variant: option.value as "solid" | "outline" | "ghost" | "link" }))}>
+                                        {option.label}
+                                    </Menu.Item>
+                                ))}
                             </Menu.Content>
                         </Menu.Positioner>
                     </Portal>
@@ -78,9 +82,11 @@ export function ButtonExample() {
                                         <Portal>
                                             <Menu.Positioner>
                                                 <Menu.Content>
-                                                    <Menu.Item value="sm" onSelect={() => setButton(prev => ({ ...prev, size: 'sm' }))}>Small</Menu.Item>
-                                                    <Menu.Item value="md" onSelect={() => setButton(prev => ({ ...prev, size: 'md' }))}>Medium</Menu.Item>
-                                                    <Menu.Item value="lg" onSelect={() => setButton(prev => ({ ...prev, size: 'lg' }))}>Large</Menu.Item>
+                                                    {sizeOptions.map(option => (
+                                                        <Menu.Item key={option.value} value={option.value} onSelect={() => setButton(prev => ({ ...prev, size: option.value as "sm" | "md" | "lg" }))}>
+                                                            {option.label}
+                                                        </Menu.Item>
+                                                    ))}
                                                 </Menu.Content>
                                             </Menu.Positioner>
                                         </Portal>
@@ -94,8 +100,11 @@ export function ButtonExample() {
                                         <Portal>
                                             <Menu.Positioner>
                                                 <Menu.Content>
-                                                    <Menu.Item value="enable" onSelect={() => setButton(prev => ({ ...prev, disabled: false }))}>Enable</Menu.Item>
-                                                    <Menu.Item value="disable" onSelect={() => setButton(prev => ({ ...prev, disabled: true }))}>Disable</Menu.Item>
+                                                    {toggleButtonOptions.map(option => (
+                                                        <Menu.Item key={option.value.toString()} value={option.value.toString()} onSelect={() => setButton(prev => ({ ...prev, disabled: !option.value }))}>
+                                                            {option.label}
+                                                        </Menu.Item>
+                                                    ))}
                                                 </Menu.Content>
                                             </Menu.Positioner>
                                         </Portal>
@@ -109,8 +118,11 @@ export function ButtonExample() {
                                         <Portal>
                                             <Menu.Positioner>
                                                 <Menu.Content>
-                                                    <Menu.Item value="enable" onSelect={() => setButton(prev => ({ ...prev, loading: true }))}>Enable</Menu.Item>
-                                                    <Menu.Item value="disable" onSelect={() => setButton(prev => ({ ...prev, loading: false }))}>Disable</Menu.Item>
+                                                    {toggleLoadingButtonOptions.map(option => (
+                                                        <Menu.Item key={option.value.toString()} value={option.value.toString()} onSelect={() => setButton(prev => ({ ...prev, loading: option.value }))}>
+                                                            {option.label}
+                                                        </Menu.Item>
+                                                    ))}
                                                 </Menu.Content>
                                             </Menu.Positioner>
                                         </Portal>
@@ -124,9 +136,11 @@ export function ButtonExample() {
                                         <Portal>
                                             <Menu.Positioner>
                                                 <Menu.Content>
-                                                    <Menu.Item value="Loading..." onSelect={() => setButton(prev => ({ ...prev, loadingText: 'Loading...' }))}>Loading...</Menu.Item>
-                                                    <Menu.Item value="Please wait" onSelect={() => setButton(prev => ({ ...prev, loadingText: 'Please wait' }))}>Please wait</Menu.Item>
-                                                    <Menu.Item value="Processing" onSelect={() => setButton(prev => ({ ...prev, loadingText: 'Processing' }))}>Processing</Menu.Item>
+                                                    {loadingButtonOptions.map(option => (
+                                                        <Menu.Item key={option.value} value={option.value} onSelect={() => setButton(prev => ({ ...prev, loadingText: option.value }))}>
+                                                            {option.label}
+                                                        </Menu.Item>
+                                                    ))}
                                                 </Menu.Content>
                                             </Menu.Positioner>
                                         </Portal>

@@ -1,5 +1,7 @@
-import { useState } from "react"
-import type { ButtonState } from "./interface"
+import * as imports from './buttonImports.ts'
+import type { ButtonState } from './buttonImports.ts'
+
+const {useState} = imports
 
 export function useButtonState() {
     const [button, setButton] = useState<ButtonState>({
