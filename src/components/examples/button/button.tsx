@@ -1,9 +1,8 @@
 import * as imports from './buttonImports.ts'
-import { useButtonState } from './useButtonState'
-import { useState } from 'react'
 
 const {
     Box, Text,
+    useButtonState, useState,
     ColorMenu, VariantMenu, MoreMenu, SectionScreen, CopyCodeBlock
 } = imports
 
