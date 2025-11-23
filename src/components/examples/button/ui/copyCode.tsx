@@ -1,10 +1,10 @@
 import { Button, Box, Code } from "@chakra-ui/react"
-import { useCopyCode } from "../../hooks/extras"
+import { useCopyCode } from "../../../hooks/extras"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import type { ButtonProps } from "@chakra-ui/react"
 
-export function CopyCodeBlock({ buttonState, isViewScreen }: { buttonState: ReturnType<typeof import("./useButtonState").useButtonState>; isViewScreen: boolean }) {
+export function CopyCodeBlock({ buttonState, isViewScreen }: { buttonState: ReturnType<typeof import("./../useButtonState").useButtonState>; isViewScreen: boolean }) {
   const { label, buttonProps, buttonCodeString } = buttonState
   const { copyCode } = useCopyCode()
 
@@ -24,7 +24,7 @@ export function CopyCodeBlock({ buttonState, isViewScreen }: { buttonState: Retu
       ) }
       { !isViewScreen && (
         <>
-          <Code>{buttonCodeString}</Code>
+          <Code colorPalette="blue">{buttonCodeString}</Code>
           <Button onClick={() => copyCode(buttonCodeString)} ml={4} aria-label="Copy code"><FontAwesomeIcon icon={faCopy} /></Button>
         </>
       ) }

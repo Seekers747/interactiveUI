@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react"
 
-export function SectionScreen({ isViewScreen, setIsViewScreen }: { isViewScreen: boolean; setIsViewScreen: (value: boolean) => void }) {
+export function PreviewCode({ isViewScreen, setIsViewScreen }: { isViewScreen: boolean; setIsViewScreen: (value: boolean) => void }) {
     return (
         <>
             <Button 

@@ -1,5 +1,5 @@
 import { Button, Menu, Portal } from "@chakra-ui/react";
-import { colorOptions } from "../menuItems";
+import { colorOptions } from "./../data/menuItems";
 
 export function ColorMenu({ buttonState }: { buttonState: ReturnType<typeof import("../useButtonState").useButtonState> }) {
     const { setButton } = buttonState

@@ -1,5 +1,6 @@
 import { Button, Menu, Portal, Text } from "@chakra-ui/react";
-import { loadingButtonOptions, sizeOptions, toggleButtonOptions, toggleLoadingButtonOptions } from "../menuItems"
+import { loadingButtonOptions, sizeOptions, toggleButtonOptions, toggleLoadingButtonOptions } from "./../data/menuItems";
+
 
 export function MoreMenu({ buttonState } : { buttonState: ReturnType<typeof import("../useButtonState").useButtonState> }) {
     const { setButton } = buttonState

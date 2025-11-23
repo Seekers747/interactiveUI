@@ -1,5 +1,6 @@
 import { Button, Menu, Portal } from "@chakra-ui/react";
-import { variantOptions } from "../menuItems";
+import { variantOptions } from "./../data/menuItems";
+
 
 export function VariantMenu({ buttonState }: { buttonState: ReturnType<typeof import("../useButtonState").useButtonState> }) {
     const { setButton } = buttonState
