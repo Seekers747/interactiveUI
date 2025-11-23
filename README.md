@@ -106,4 +106,3 @@ Contributions, issues, and feature requests are welcome!
 ---
 
 Built with ❤️ using React and TypeScript
-```
